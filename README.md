@@ -30,10 +30,10 @@ var MT = require("index");
 ##Method Example : SYS_NV_WRITE
   ```js
   var commandSysNVWrite = { id : 0x0F00, offset : 0x00, len : 0x01, value : [0x55] };
-      MT.SysNVWrite(commandSysNVWrite, function(err, data){
-         console.log("***User: write NV Successfully");
-         console.log(data);
-      });
+   MT.SysNVWrite(commandSysNVWrite, function(err, data){
+     console.log("***User: write NV Successfully");
+     console.log(data);
+   });
   ```
 1.  SysNVWrite is one the mt-simple API function which writes to none volatial memory of TI-cc2530
 2.  User should create an object to specifies the attribute
