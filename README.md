@@ -33,7 +33,7 @@ var MT = require("index");
     ...code...
   }
   ```
-1. Write your code in a function that is called after init
+1. Write your code in the start function that is called after init
 2. It makes sure that your code is executed after port and parser is ready
 
 ##Method Example 1: SYS_TIME_SET
