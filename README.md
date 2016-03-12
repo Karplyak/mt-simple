@@ -36,7 +36,7 @@ var MT = require("index");
 1. Write your code in a function that is called after init
 2. It makes sure that your code is executed after port and parser is ready
 
-##Method Example 2: SYS_TIME_SET
+##Method Example 1: SYS_TIME_SET
   ```js
     MT.setCurrentTime(function(err, data){
        console.log("***User: set current time Successfully");
