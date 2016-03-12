@@ -73,8 +73,11 @@ var MT = require("index");
   ```
 1. Indication means an response from Soc and it is not synchronous
 2. Use hub.on to listen to the indication
-2. In this case, when the timer expires, then execute the callback function in hub.on('messsageIND', callback(){})
-3. We show an example to get the value of tempature when the timer expires a.k.a after 2000 millisecond
+2. In this case, when the timer expires, then execute the callback function in
+```js
+hub.on('messsageIND', callback(){});
+```
+4. We show an example to get the value of tempature when the timer expires a.k.a after 2000 millisecond
 
 ##Notrecognized Command Dealer Example : 
   ```js
@@ -82,5 +85,7 @@ var MT = require("index");
      console.log(data);
   });
   ```
-1. If the ID of indication/synchronous response is not regonized by parser, then execute the callback function in hub.on('notRecogMessage', callback(){})
-
+1. If the ID of indication/synchronous response is not regonized by parser, then execute the callback function in
+```js
+hub.on('notRecogMessage', callback(){});
+```
