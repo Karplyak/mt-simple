@@ -61,7 +61,10 @@ nodeJS API Library implementing Monitor-and-Test command to control TI-2530 chip
 2. It makes sure that your code is executed after port and parser is ready
 
 ##Methods
-
+* `init(portname, callback)` - initiate serial port and parser
+* `setCurrentTime(callback)` - reset the value of time in TI-cc2530 chip
+* `getCurrentTime(callback)` - get the value of time in TI-cc2530 chip
+* `getTempature(callback)` - get the value of tempature in TI-cc2530 chip
 
 ###Method Example 1: SYS_TIME_SET
   ```js
