@@ -19,17 +19,17 @@ function start(){
 
     //set timer 0 ,it will expire in 2 secs//
     MT.startTimer({id:0, timeout:2000}, function(err, data){
-        console.log("timer 1 set successfully");
+        console.log("timer 0 set successfully");
         console.log(data);
     });
     //set timer 1 ,it will expire in 4 secs// 
     MT.startTimer({id:1, timeout:4000}, function(err, data){
-        console.log("timer 2 set successfully");
+        console.log("timer 1 set successfully");
         console.log(data);
     });
     //set timer 2 ,it will expire in 7 secs//
     MT.startTimer({id:2, timeout:6000}, function(err, data){
-        console.log("timer 3 set successfully");
+        console.log("timer 2 set successfully");
         console.log(data);
     });
     //set timer 3 ,it will expire in 8 secs//

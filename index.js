@@ -7,10 +7,10 @@ var serialport = require("serialport");
 var SerialPort = serialport.SerialPort;
 var Concentrate = require('concentrate');
 
-var FCS = require("./fcs");
-var MT_parser = require("./parser");
-var counter = require('./counter');
-var queue = require('./queue');
+var FCS = require("./lib/fcs");
+var MT_parser = require("./lib/parser");
+var counter = require('./lib/counter');
+var queue = require('./lib/queue');
 
 var events =require('events');
 var event = new events.EventEmitter();
