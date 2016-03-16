@@ -14,7 +14,7 @@ Available via [npm](http://npmjs.org/):
 
 Or via git:
 
-> $ git clone git://github.com/deoxxa/dissolve.git node_modules/dissolve
+> $ git clone https://github.com/adwin5/mt-simple.git
 
 ##Test Files
 ####/test has 4 demo files
