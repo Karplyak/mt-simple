@@ -107,7 +107,7 @@ Example:
 2. Use hub.on to listen to the indication
 2. In this case, when the timer expires, then execute the callback function in
 ```js
-hub.on('messsageIND', callback(){});
+hub.on('messsageIND', cb);
 ```
 4. We show an example to get the value of tempature when the timer expires a.k.a after 2000 millisecond
 
@@ -119,7 +119,7 @@ hub.on('messsageIND', callback(){});
   ```
 1. If the ID of indication/synchronous response is not regonized by parser, then execute the callback function in
 ```js
-hub.on('notRecogMessage', callback(){});
+hub.on('notRecogMessage', cb);
 ```
 
 ##Methods
