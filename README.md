@@ -1,5 +1,5 @@
 # mt-simple
-Use TI-2530 Soc through Monitor-and-Test command
+nodeJS API Library implementing Monitor-and-Test command to control TI-2530 chip. 
 
 ##Overview
 
@@ -10,7 +10,7 @@ Use TI-2530 Soc through Monitor-and-Test command
 ##Installation
 
 
-##Test File 
+##Test Files
 ####/test has 4 demo files
 *  demoNV.js        
 *  demoTempature.js    
@@ -26,8 +26,18 @@ Use TI-2530 Soc through Monitor-and-Test command
   MT.init("/dev/ttyUSB0", function(){
       start();
     });
-
-
+    
+  function start(){
+    //set Time
+    MT.setCurrentTime(function(err, data){
+       console.log("***User: set current time Successfully");
+    });
+    //get Time
+    MT.getTime(function(err, data){
+      console.log("***User: the current time is:");
+      console.log(data.Hour+":"+data.Minute+":"+data.Second+"   "+data.Year+"/"+data.Month+"/"+data.Day);
+    });    
+  }
   ```
   
 ###Init
