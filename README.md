@@ -1,5 +1,14 @@
 # mt-simple
-simple MT API to use TI-2530 Soc through Monitor-and-Test command
+Use TI-2530 Soc through Monitor-and-Test command
+
+##Overview
+
+
+##Features
+
+
+##Installation
+
 
 ##Test File 
 ####/test has 4 demo files
@@ -11,12 +20,17 @@ simple MT API to use TI-2530 Soc through Monitor-and-Test command
 ####/test-web has 1 demo file
 *  demowebserver
 
-##To Use
+##How to use
   ```js
-var MT = require("index");
+  var MT = require("index");
+  MT.init("/dev/ttyUSB0", function(){
+      start();
+    });
+
+
   ```
   
-##Init
+###Init
   ```js
   MT.init("/dev/ttyUSB0", function(){
       start();
@@ -27,7 +41,7 @@ var MT = require("index");
 3. Callback function will be called after init is done
 4. In this case, start function will be called after init is done
 
-##Write Code Here
+###Write Code Here
   ```js
   function start(){
     ...code...
@@ -36,28 +50,31 @@ var MT = require("index");
 1. Write your code in the start function that is called after init
 2. It makes sure that your code is executed after port and parser is ready
 
-##Method Example 1: SYS_TIME_SET
+##Methods
+
+
+###Method Example 1: SYS_TIME_SET
   ```js
-    MT.setCurrentTime(function(err, data){
-       console.log("***User: set current time Successfully");
-    });
+    MT.setCurrentTime(callback);
   ```
 1.  setCurrentTime is one of the mt-simple API function which sets the time/clock of TI-cc2530 to current time
 2.  The time in TI-cc2530 is not current time if your just power on and read the time.
 
-##Method Example 2: SYS_NV_WRITE
+###Method Example 2: SYS_NV_WRITE
   ```js
-  var commandSysNVWrite = { id : 0x0F00, offset : 0x00, len : 0x01, value : [0x55] };
-   MT.SysNVWrite(commandSysNVWrite, function(err, data){
-     console.log("***User: write NV Successfully");
-     console.log(data);
-   });
+    var data = { id : 0x0F00, offset : 0x00, len : 0x01, value : [0x55] };
+    MT.SysNVWrite(data, callback);
   ```
 1.  SysNVWrite is one of the mt-simple API function which writes to none volatial memory of TI-cc2530
 2.  User should create an object to specifies the attribute
 3.  the console.log(...) will be called when the parser receive response from TI-cc2530
 
 ##Indication Dealer Example : 
+  ```js
+  MT.startTimer(data, callback);
+  MT.hub.on('messageIND',callback);
+  ```
+Example:
   ```js
   //set timer 0 ,it will expire in 2 secs//
   MT.startTimer({id:0, timeout:2000}, function(err, data){});
@@ -79,7 +96,7 @@ hub.on('messsageIND', callback(){});
 ```
 4. We show an example to get the value of tempature when the timer expires a.k.a after 2000 millisecond
 
-##Notrecognized Command Dealer Example : 
+##notRecognized Command Dealer Example : 
   ```js
   MT.hub.on('notRecogMessage',function(data){
      console.log(data);
