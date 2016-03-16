@@ -49,7 +49,9 @@ function send_message(command_name, obj, callback){
   MT_parser.once(tag+'messageSRSP',function(data){
   //listen for SRSP message//so every send message has its own listener
 
-    callback(null, data);
+    if((typeof callback !== 'undefined')&&(callback!==null)){
+      callback(null, data);
+    }
     queue.deQueue();
     //When SRSP message is received, we should let the next waiting command to exe//
     //if there are other commands waiting, then pop it//    

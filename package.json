@@ -23,11 +23,11 @@
     "url": "https://github.com/adwin5/mt-simple/issues"
   },
   "homepage": "https://github.com/adwin5/mt-simple#readme",
-  "devDependencies" : {
+  "dependencies": {
     "concentrate": "0.2.3",
     "dissolve": "0.3.3",
-    "dissolve-chunks": "1.0.1",
+    "dissolve-chunks": "1.0.2",
     "serialport": "2.0.6",
-    "socket.io": "1.4.5",
+    "socket.io": "1.4.5"
   }
 }
