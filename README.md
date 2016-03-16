@@ -60,12 +60,6 @@ nodeJS API Library implementing Monitor-and-Test command to control TI-2530 chip
 1. Write your code in the start function that is called after init
 2. It makes sure that your code is executed after port and parser is ready
 
-##Methods
-* `init(portname, callback)` - initiate serial port and parser
-* `setCurrentTime(callback)` - reset the value of time in TI-cc2530 chip
-* `getCurrentTime(callback)` - get the value of time in TI-cc2530 chip
-* `getTempature(callback)` - get the value of tempature in TI-cc2530 chip
-
 ###Method Example 1: SYS_TIME_SET
   ```js
     MT.setCurrentTime(callback);
@@ -82,7 +76,7 @@ nodeJS API Library implementing Monitor-and-Test command to control TI-2530 chip
 2.  User should create an object to specifies the attribute
 3.  the console.log(...) will be called when the parser receive response from TI-cc2530
 
-##Indication Dealer Example : 
+###Indication Dealer Example : 
   ```js
   MT.startTimer(data, callback);
   MT.hub.on('messageIND',callback);
@@ -109,7 +103,7 @@ hub.on('messsageIND', callback(){});
 ```
 4. We show an example to get the value of tempature when the timer expires a.k.a after 2000 millisecond
 
-##notRecognized Command Dealer Example : 
+###notRecognized Command Dealer Example : 
   ```js
   MT.hub.on('notRecogMessage',function(data){
      console.log(data);
@@ -119,3 +113,18 @@ hub.on('messsageIND', callback(){});
 ```js
 hub.on('notRecogMessage', callback(){});
 ```
+
+##Methods
+* `init(portname, cb)` - initiate serial port and parser
+* `setCurrentTime(cb)` - reset the value of time in TI-cc2530 chip
+* `getCurrentTime(cb)` - get the value of time in TI-cc2530 chip
+* `getTempature(cb)` - get the value of tempature in TI-cc2530 chip
+* `startTimer(data, cb)` - start a timer in 
+* `SysNVWrite(data, cb)` - write to the Non-volatiale memory
+* `SysNVRead(data, cb)` -  read from the Non-volatiale memory
+* `ZBWriteConfg(data, cb)` - write and config Z-Stack
+* `SysNVItemInit(data, cb)` - Write and Initiale 
+* `SysResetReq(cb)` - hard reset of the TI-cc2530 chip
+* `hub.on('messageIND',cb)` - listener for listening recognized indication 
+* `hub.on('notRecogMessage',cb)` - listener for listening not recognized indication 
+
