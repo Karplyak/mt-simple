@@ -1,14 +1,20 @@
 # mt-simple
-nodeJS API Library implementing Monitor-and-Test command to control TI-2530 chip. 
+nodeJS API Library implementing Monitor-and-Test command to control TI-2530 chip for IOT application. 
 
 ##Overview
-
+  The CC2530 is a System-on-chip solution for IEEE 802.15.4, Zigbee and RF4CE applications, and the Monitor-and-Test(MT) interface is used for communication between the host testter and a Zigbee device through RS-232 serial port. As a user/tester, we can issue MT commands to the ZigBee target for your application: tempature sensoring, light sensing and chemical sensing etc. Thus, a nodeJS API Library which encapsulates the MT interface can help nodeJS/JavaScript user easily issue MT commands for their IOT application.
 
 ##Features
-
+  With mt-simple nodeJS API Library, you can issue MT command easily through downloading mt-simple from npm and used in your nodeJS/JavaScript project without the need to look trough handbook issued by Texas Intrusment.
 
 ##Installation
+Available via [npm](http://npmjs.org/):
 
+> $ npm install mt-simple
+
+Or via git:
+
+> $ git clone git://github.com/deoxxa/dissolve.git node_modules/dissolve
 
 ##Test Files
 ####/test has 4 demo files
