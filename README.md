@@ -402,15 +402,15 @@ AP sent:
 
 ##Methods
 * `init(portname, cb)` - initiate serial port and parser
-* `setCurrentTime(cb)` - reset the value of time in TI-cc2530 chip
-* `getCurrentTime(cb)` - get the value of time in TI-cc2530 chip
-* `getTempature(cb)` - get the value of tempature in TI-cc2530 chip
-* `startTimer(data, cb)` - start a timer in 
-* `SysNVWrite(data, cb)` - write to the Non-volatiale memory
-* `SysNVRead(data, cb)` -  read from the Non-volatiale memory
-* `ZBWriteConfg(data, cb)` - write and config Z-Stack
-* `SysNVItemInit(data, cb)` - Write and Initiale 
-* `SysResetReq(cb)` - hard reset of the TI-cc2530 chip
+* `setCurrentTime([cb])` - reset the value of time in TI-cc2530 chip
+* `getCurrentTime([cb])` - get the value of time in TI-cc2530 chip
+* `getTempature([cb])` - get the value of tempature in TI-cc2530 chip
+* `startTimer(data[,cb])` - start a timer in 
+* `SysNVWrite(data[,cb])` - write to the Non-volatiale memory
+* `SysNVRead(data[,cb])` -  read from the Non-volatiale memory
+* `ZBWriteConfg(data[,cb])` - write and config Z-Stack
+* `SysNVItemInit(data[,cb])` - Write and Initiale 
+* `SysResetReq([cb])` - hard reset of the TI-cc2530 chip
 * `hub.on('messageIND',cb)` - listener for listening recognized indication 
 * `hub.on('notRecogMessage',cb)` - listener for listening not recognized indication 
 
