@@ -276,6 +276,125 @@ AP sent:
   'H/W': 2 }
 ```
 ==================================
+demoTimer.js
+```js
+////////////////////////////////////////////////////////
+// Use the mt-simple API library                      //
+// to set 4 timers in TI CC2530 and get time and      //
+// tempature when the timer expires                   //
+//////////////////////////////////////////////////////// 
+
+'use strict';
+var MT = require("../index");
+
+//check out your portname through the "dmesg" command//
+MT.init("/dev/ttyUSB0", function(){
+      start();
+});
+
+function start(){  
+
+    MT.setCurrentTime(function(err, data){
+        console.log("***User: set current time Successfully");
+    });
+    //set timer 0 ,it will expire in 2 secs//
+    MT.startTimer({id:0, timeout:2000}, function(err, data){
+        console.log("timer 0 set successfully");
+        console.log(data);
+    });
+    //set timer 1 ,it will expire in 4 secs// 
+    MT.startTimer({id:1, timeout:4000}, function(err, data){
+        console.log("timer 1 set successfully");
+        console.log(data);
+    });
+    //set timer 2 ,it will expire in 7 secs//
+    MT.startTimer({id:2, timeout:6000}, function(err, data){
+        console.log("timer 2 set successfully");
+        console.log(data);
+    });
+    //set timer 3 ,it will expire in 8 secs//
+    MT.startTimer({id:3, timeout:8000}, function(err, data){
+        console.log("timer 3 set successfully");
+        console.log(data);
+    });
+    
+    MT.hub.on('messageIND',function(data){
+      //get time//
+      MT.getTime(function(err, data){
+          console.log("***User: the current time is:");
+          console.log(data.Hour+":"+data.Minute+":"+data.Second+"   "+data.Year+"/"+data.Month+"/"+data.Day);
+      });
+      //get tempature//
+      MT.getTempature(function(err, data){
+          console.log("***User: the current tempature is:");
+          console.log(data.AdcRead.toString(16));
+      });
+    });
+
+    //listen to indication/response which the system can't parse
+    MT.hub.on('notRecogMessage',function(data){
+       console.log(data);
+    });
+}
+```
+
+Result
+```
+open
+AP sent: 
+<Buffer fe 0b 21 10 b1 93 7d 1e 10 0b 1d 03 11 e0 07 88>
+***User: set current time Successfully
+AP sent: 
+<Buffer fe 03 21 0a 00 d0 07 ff>
+timer 0 set successfully
+{ 'Status of SYS_OSAL_START_TIMER: [Success(0) or Failure(1)]': 0 }
+AP sent: 
+<Buffer fe 03 21 0a 01 a0 0f 86>
+timer 1 set successfully
+{ 'Status of SYS_OSAL_START_TIMER: [Success(0) or Failure(1)]': 0 }
+AP sent: 
+<Buffer fe 03 21 0a 02 70 17 4d>
+timer 2 set successfully
+{ 'Status of SYS_OSAL_START_TIMER: [Success(0) or Failure(1)]': 0 }
+AP sent: 
+<Buffer fe 03 21 0a 03 40 1f 74>
+timer 3 set successfully
+{ 'Status of SYS_OSAL_START_TIMER: [Success(0) or Failure(1)]': 0 }
+AP sent: 
+<Buffer fe 00 21 11 30>
+***User: the current time is:
+16:11:31   2016/3/17
+AP sent: 
+<Buffer fe 02 21 0d 0e 03 23>
+***User: the current tempature is:
+234
+AP sent: 
+<Buffer fe 00 21 11 30>
+***User: the current time is:
+16:11:33   2016/3/17
+AP sent: 
+<Buffer fe 02 21 0d 0e 03 23>
+***User: the current tempature is:
+234
+AP sent: 
+<Buffer fe 00 21 11 30>
+***User: the current time is:
+16:11:35   2016/3/17
+AP sent: 
+<Buffer fe 02 21 0d 0e 03 23>
+***User: the current tempature is:
+233
+AP sent: 
+<Buffer fe 00 21 11 30>
+***User: the current time is:
+16:11:37   2016/3/17
+AP sent: 
+<Buffer fe 02 21 0d 0e 03 23>
+***User: the current tempature is:
+234
+```
+==================================
+
 ##Methods
 * `init(portname, cb)` - initiate serial port and parser
 * `setCurrentTime(cb)` - reset the value of time in TI-cc2530 chip
