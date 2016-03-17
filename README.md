@@ -54,6 +54,17 @@ Or via git:
   }
   ```
   
+  Result
+  ```
+open
+AP sent: 
+<Buffer fe 0b 21 10 19 8f 7d 1e 0f 33 35 03 11 e0 07 33>
+***User: set current time Successfully
+AP sent: 
+<Buffer fe 00 21 11 30>
+***User: the current time is:
+15:51:53   2016/3/17
+  ```
 ###Init
   ```js
   MT.init("/dev/ttyUSB0", function(){
