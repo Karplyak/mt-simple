@@ -12,6 +12,15 @@ As a user/tester, we can issue MT commands to the ZigBee target for your applica
   For example, a HTML/CSS + websocket + mt-simple API website to present **tempature and brightness in realtime**.
   
   ![mt-simple web_demo](https://github.com/adwin5/mt-simple/blob/master/document/web_demo.jpg)
+
+##Requirement
+* cc2530 system-on-chip *1
+* RS-232 *1
+* npm installed
+* light sensor (optional)
+
+  ![mt-simple requirement](https://github.com/adwin5/mt-simple/blob/master/document/requirement.jpg)
+ 
   
 ##Installation
 Available via [npm](http://npmjs.org/):
