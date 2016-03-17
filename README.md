@@ -140,6 +140,142 @@ hub.on('messsageIND', cb);
 hub.on('notRecogMessage', cb);
 ```
 
+##Demo
+
+demoTempature.js
+```js
+////////////////////////////////////////////////////////
+// Use the mt-simple API library                      //
+// to set time and get time and current tempature     //
+// of TI CC2530                                       //
+//////////////////////////////////////////////////////// 
+
+'use strict';
+ var MT = require("../index");
+ 
+    //check out your portname through the "dmesg" command//
+    MT.init("/dev/ttyUSB0", function(){
+      start();
+    });
+
+    function start(){
+      MT.setCurrentTime(function(err, data){
+         console.log("***User: set current time Successfully");
+      });
+     
+      MT.getTime(function(err, data){
+        console.log("***User: the current time is:");
+        console.log(data.Hour+":"+data.Minute+":"+data.Second+"   "+data.Year+"/"+data.Month+"/"+data.Day);
+      });    
+      MT.getTempature(function(err, data){
+          console.log("***User: the current tempature is:");
+          console.log(data.AdcRead.toString());
+      });
+    }
+```
+
+Result
+```
+open
+AP sent: 
+<Buffer fe 0b 21 10 4d 91 7d 1e 10 01 11 03 11 e0 07 70>
+***User: set current time Successfully
+AP sent: 
+<Buffer fe 00 21 11 30>
+***User: the current time is:
+16:1:17   2016/3/17
+AP sent: 
+<Buffer fe 02 21 0d 0e 03 23>
+***User: the current tempature is:
+564
+```
+==================================
+
+demoNV.js
+```js
+////////////////////////////////////////////////////////////////////////////////////////
+// Use the mt-simple API library                                                      //
+// to write and read none volatial memoryin of TICC2530                               //
+// Also, here are other command tested :                                              //
+// Zigbee write configure, System NV init and system reset request                    //
+//////////////////////////////////////////////////////////////////////////////////////// 
+
+ 'use strict';
+  var MT = require("../index");
+
+  //check out your portname through the "dmesg" command//
+  MT.init("/dev/ttyUSB0", function(){
+    start();
+  });
+
+  function start(){
+    //write to NV memory
+    var commandSysNVWrite = { id : 0x0F00, offset : 0x00, len : 0x01, value : [0x55] };
+    MT.SysNVWrite(commandSysNVWrite, function(err, data){
+       console.log("***User: write NV Successfully");
+       console.log(data);
+    });
+    //read from NV memory
+    var commandSysNVRead = { id : 0x0F00, offset : 0x00 };
+    MT.SysNVRead(commandSysNVRead, function(err, data){
+       console.log("***User: Read NV Successfully");
+       console.log(data);
+    });
+    //write ZB configure
+    var commandZBWriteConfg = { configid : 0x03, len : 0x01, value : [0x02] };
+    MT.ZBWriteConfg(commandZBWriteConfg, function(err, data){
+       console.log("***User: ZB write config Successfully");
+       console.log(data);
+    });
+    //create and initialize an item in non-volatial memory
+    var commandSysNVItemInit = { id: 0x0F00, len : 0x01, initlen: 0x01, initvalue : [0x00]};
+    MT.SysNVItemInit(commandSysNVItemInit, function(err, data){
+       console.log("***User: NV write and init Successfully");
+       console.log(data);
+    });
+    //System Reset 
+    MT.SysResetReq(function(err, data){
+      console.log("***User: System Reset Successfully");
+      console.log(data);
+    });
+    //listen to indication 
+    MT.hub.on('messageIND',function(data){
+      console.log("***User: Receieved indication");         
+      console.log(data);
+    });
+  }
+```
+
+Result
+```
+open
+AP sent: 
+<Buffer fe 05 21 09 00 0f 00 01 55 76>
+***User: write NV Successfully
+{ Status: 0 }
+AP sent: 
+<Buffer fe 03 21 08 00 0f 00 25>
+***User: Read NV Successfully
+{ Status: 0, Value: <Buffer 55> }
+AP sent: 
+<Buffer fe 03 26 05 03 01 02 20>
+***User: ZB write config Successfully
+{ Status: 0 }
+AP sent: 
+<Buffer fe 05 21 07 00 0f 01 01 00 2c>
+***User: NV write and init Successfully
+{ Status: 0 }
+AP sent: 
+<Buffer fe 01 41 00 00 40>
+***User: Receieved indication
+{ Reason: 2,
+  TransID: 2,
+  ProductID: 0,
+  MajorRel: 2,
+  MinorRel: 6,
+  'H/W': 2 }
+```
+==================================
 ##Methods
 * `init(portname, cb)` - initiate serial port and parser
 * `setCurrentTime(cb)` - reset the value of time in TI-cc2530 chip
