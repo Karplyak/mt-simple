@@ -19,14 +19,23 @@
       $('#date').text(data.date);
       $('#temp'+data.nodeID).text(data.tem);
       if(data.tem > 35)
-         $('#status'+data.nodeID).text(" Too high");
+         $('#temp'+data.nodeID+'status').text(" Too high");
       else if(data.tem < 20)
-         $('#status'+data.nodeID).text(" Too low");
+         $('#temp'+data.nodeID+'status').text(" Too low");
       else
-          $('#status'+data.nodeID).text(" Normal");
-     var valeuProgressiveBar = data.tem*2;
+          $('#temp'+data.nodeID+'status').text(" Normal");
+
+      $('#light'+data.nodeID).text(data.light);
+      if(data.light > 150)
+         $('#light'+data.nodeID+'status').text(" Too bright");
+      else if(data.light < 85)
+         $('#light'+data.nodeID+'status').text(" Too dark");
+      else
+          $('#light'+data.nodeID+'status').text(" Normal");
+
+     var valeuProgressiveBar = data.light/2;
      $('.progress-bar').css('width', valeuProgressiveBar+'%').attr('aria-valuenow', valeuProgressiveBar); 
-     $('#barTemp'+data.nodeID).text(data.tem);
+     $('#barLight'+data.nodeID).text(data.light);
  
     });
   </script>
@@ -47,19 +56,19 @@
     </thead>
     <tbody>
       <tr class="success">
-        <td>Sensor-01</td>
+        <td>Tempature-00</td>
         <td id="temp0">22</td>
-        <td id="status0">Normal</td>
+        <td id="temp0status">Normal</td>
       </tr>
       <tr class="danger">
-        <td>Sensor-02</td>
-        <td id="temp1">18</td>
-        <td id="status1">Normal</td>
+        <td>Light-00</td>
+        <td id="light0">18</td>
+        <td id="light0status">Normal</td>
       </tr>
       <tr class="info">
         <td>Sensor-07</td>
-        <td id="temp2">25</td>
-        <td id="status2">Normal</td>
+        <td >25</td>
+        <td >Normal</td>
       </tr>
     </tbody>
   </table>
@@ -67,7 +76,7 @@
   <div class="progress">
 
 <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-      <div id="barTemp0"></div> 
+      <div id="barLight0"></div> 
     </div>
   </div>
 </div>
