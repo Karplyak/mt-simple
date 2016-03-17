@@ -21,8 +21,9 @@
         console.log("***User: the current time is:");
         console.log(data.Hour+":"+data.Minute+":"+data.Second+"   "+data.Year+"/"+data.Month+"/"+data.Day);
       });    
-      MT.getTempature(function(err, data){
-          console.log("***User: the current tempature is:");
+      var commandgetAdcValue = {channel : 0x07};
+      MT.getAdcValue(commandgetAdcValue, function(err, data){
+          console.log("***User: the current Analog value is:");
           console.log(data.AdcRead.toString());
       });
     }

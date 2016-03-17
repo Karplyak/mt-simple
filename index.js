@@ -117,6 +117,9 @@ var MT_mod ={
        SysNVItemInit : function(obj, cb){
          queue.enQueue(function(){send_message('req:SysNVItemInit', obj, cb);});
        },
+       getAdcValue : function(obj, cb){
+         queue.enQueue(function(){send_message('req:SysAdcRead', obj, cb);});
+       },
        hub : event
 
 };
@@ -145,6 +148,8 @@ function MessageFactory(){
         message = new SysResetReq();
       } else if(type === 'req:SysNVItemInit'){
         message = new SysNVItemInit(obj);
+      } else if(type === 'req:SysAdcRead'){
+        message = new SysAdcRead(obj);
       }
 
       message.type = type;
@@ -247,4 +252,13 @@ var SysNVItemInit = function(obj){
                              .buffer(new Buffer(obj.initvalue))
                              .result();
 };
-
+var SysAdcRead = function(obj){
+  if((obj.channel == null))
+      throw "parameter is not complete"  
+    this.MTBuf = Concentrate().uint8(0xFE).uint8(0x02)
+                             .uint8(0x21)
+                             .uint8(0x0D)
+                             .uint8(obj.channel)
+                             .uint8(0x03)
+                             .result();
+};
