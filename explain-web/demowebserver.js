@@ -12,7 +12,7 @@ var http = require("http");
 var url = require('url');
 var fs = require('fs');
 var io = require('socket.io'); 
-var tempature = require('./tempupdate'); 
+var tempature = require('./adcUpdate'); 
 
 var server = http.createServer(function(request, response) {
   console.log('Connection');
@@ -89,6 +89,6 @@ var ID = 0;// ID is used to verify which node//
 serv_io.sockets.on('connection', function(socket) {
    
   setInterval(function() {
-    socket.emit('date', {'nodeID': ID, 'date': new Date(), 'tem' : tempature.getTemp() });
+    socket.emit('date', {'nodeID': ID, 'date': new Date(), 'tem' : tempature.getTempValue(), 'light': tempature.getLightValue()});
   }, 100);
 });
