@@ -2,9 +2,10 @@
   "name": "mt-simple",
   "version": "1.0.0",
   "description": "simple version of API to use TI CC2530 through monitor and test command",
-  "main": "mt.js",
+  "main": "index.js",
   "directories": {
-    "test": "test"
+    "example": "explain", 
+    "example-web": "explain-web"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,7 +28,9 @@
     "concentrate": "0.2.3",
     "dissolve": "0.3.3",
     "dissolve-chunks": "1.0.2",
+    "events": "1.1.0",
     "serialport": "2.0.6",
-    "socket.io": "1.4.5"
+    "socket.io": "1.4.5",
+    "util": "0.10.3"
   }
 }
