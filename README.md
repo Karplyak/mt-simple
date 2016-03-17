@@ -62,6 +62,7 @@ Or via git:
 2. If you don't know your portname, please check out your portname through the "dmesg" command
 3. Callback function will be called after init is done
 4. In this case, start function will be called after init is done
+  ![mt-simple dmesg](https://github.com/adwin5/mt-simple/blob/master/document/dmesg_command.jpg)
 
 ###Write Code Here
   ```js
