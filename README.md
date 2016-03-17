@@ -9,6 +9,9 @@ As a user/tester, we can issue MT commands to the ZigBee target for your applica
 ##Features
   With mt-simple nodeJS API Library, you can issue MT command easily through downloading mt-simple from npm and used in your nodeJS/JavaScript project without the need to look trough handbook issued by Texas Intrusment.
 
+  For example, a HTML/CSS + websocket + mt-simple API website to present **tempature and brightness in realtime**.
+  
+  ![mt-simple web_demo](https://github.com/adwin5/mt-simple/blob/master/document/web_demo.jpg)
 ##Installation
 Available via [npm](http://npmjs.org/):
 
@@ -17,6 +20,7 @@ Available via [npm](http://npmjs.org/):
 Or via git:
 
     > $ git clone https://github.com/adwin5/mt-simple.git
+    > $ npm install
 
 ##Test Files
 ####/test has 4 demo files
