@@ -23,14 +23,16 @@ Or via git:
     > $ npm install
 
 ##Test Files
-####/test has 4 demo files
+####/explain has 4 demo files
 *  demoNV.js        
 *  demoTempature.js    
 *  demotime.js 
 *  demoTimer.js
+*  demoAdcRead.js
 
-####/test-web has 1 demo file
-*  demowebserver
+####/explain-web has 1 demo file
+*  demowebserver.js
+*  table.html
 
 ##How to use
   ```js
